@@ -13,6 +13,10 @@ import { BienvenidaComponent } from './components/bienvenida/bienvenida.componen
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { TatetiComponent } from './components/tateti/tateti.component';
 import { PreguntadosComponent } from './components/preguntados/preguntados.component';
+import {AngularFireModule} from '@angular/fire/compat';
+import { environment } from 'src/environments/environment.prod';
+import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -25,12 +29,14 @@ import { PreguntadosComponent } from './components/preguntados/preguntados.compo
     BienvenidaComponent,
     JuegosComponent,
     TatetiComponent,
-    PreguntadosComponent
+    PreguntadosComponent,
+    TopNavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
   bootstrap: [AppComponent]

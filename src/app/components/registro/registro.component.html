@@ -1,1 +1,26 @@
-<p>registro works!</p>
+<main class="form-signin">
+    
+    <img class="mb-4" src="https://picsum.photos/72/57" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Registrate!</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" [(ngModel)]="email"  placeholder="name@example.com">
+      <label for="floatingInput">Correo</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="password" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <p *ngIf="msjErrorFire">
+      {{msjErrorFire}}
+    </p>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit"  (click)="registrarUsuario()">Finalizar!</button>
+    <p> ¿Ya tienes cuenta?  <a href=""[routerLink]="['/login']" >Inicar Sesión</a>  </p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+ 
+</main>

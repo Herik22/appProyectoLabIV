@@ -1,23 +1,32 @@
 <main class="form-signin">
-    <form>
-      <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    
+      <img class="mb-4 " src="https://picsum.photos/72/57" alt="" width="100" height="100">
+      <h1 class="h3 mb-3 fw-normal">Bienvenido, inicia sesión</h1>
   
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
+        <input type="email" class="form-control" id="floatingInput" [(ngModel)]="email"  placeholder="name@example.com" required="true" email="">
+        
+        <label for="floatingInput">Correo</label>
+    
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
+        <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="password" placeholder="Password">
+        <label for="floatingPassword">Contraseña</label>
       </div>
-  
+ 
+      <p *ngIf="msjErrorFire" >{{msjErrorFire}}</p>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-    </form>
+      <button class="w-100 btn btn-lg btn-primary" type="submit"  (click)="logearUsuario()">Ingresar</button>
+      <p> ¿no tienes cuenta ?  <a href=""[routerLink]="['/registro']" >registrate</a>  </p>
+
+      <div class="w-100 d-flex flex-row">
+        <button class="w-30 btn btn-lg btn-primary" type="submit"  (click)="logInvitado(1)">Invitado 1 🥷🏼</button>     
+        <button class="w-30 btn btn-lg btn-primary" type="submit"  (click)="logInvitado(2)">Invitado 2 👨🏽‍💻</button>     
+      </div>
+      <p class="mt-5 mb-3 text-muted">&copy; 2022–2022</p>
+   
 </main>
