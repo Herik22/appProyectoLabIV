@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+
+<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Top navbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,8 +13,28 @@
           <li *ngIf="isLogged" class="nav-item">
             <a class="nav-link" href="#" [routerLink]="['/quienSoy']">Quien Soy</a>
           </li>
+          <li  *ngIf="isLogged" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Juegos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Ahorcado</a>
+              <a class="dropdown-item" href="#">Tateti</a>
+              <a class="dropdown-item" href="#">Preguntados</a>
+            </div>
+          </li>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+              Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
           <li *ngIf="isLogged" class="nav-item">
-            <a class="nav-link" href="#" [routerLink]="['/juegos']">Juegos</a>
+            <a class="nav-link" href="#" [routerLink]="['/juegos']">Chat</a>
           </li>
         </ul>
         <div class="d-flex" *ngIf="isLogged">
@@ -22,4 +43,36 @@
 
       </div>
     </div>
-  </nav>
+</nav>-->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home']" >Patio de Juegos</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+      <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+        <li *ngIf="isLogged" class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/home']">Home</a>
+        </li>
+        <li *ngIf="isLogged" class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/quienSoy']">Quien Soy</a>
+        </li>
+        <li *ngIf="isLogged" class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['/chat']">Chat</a>
+        </li>
+        <li *ngIf="isLogged" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"  id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Juegos</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown03">
+            <li><a class="dropdown-item" href="#" [routerLink]="['/juegos/mayorMenor']">MayorMenor</a></li>
+            <li><a class="dropdown-item" href="#" [routerLink]="['/juegos/ahorcado']">Ahorcado </a></li>
+            <li><a class="dropdown-item" href="#" [routerLink]="['/juegos/preguntados']">Preguntados</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p *ngIf="isLogged" style="color: white ;" >Bienvenido:    <a style="text-decoration:none ;"  href="#" [routerLink]="['/quienSoy']">{{emailUser}}</a> </p>
+    </div>
+  </div>
+</nav>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

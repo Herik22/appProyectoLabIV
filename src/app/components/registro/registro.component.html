@@ -2,14 +2,23 @@
     
     <img class="mb-4" src="https://picsum.photos/72/57" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Registrate!</h1>
-
+  <form [formGroup]="forma" (ngSubmit)="registrarUsuario()" > 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" [(ngModel)]="email"  placeholder="name@example.com">
+      <input type="email" class="form-control" id="floatingInput"   placeholder="name@example.com" id="email" formControlName="email">
       <label for="floatingInput">Correo</label>
+      <small class="invalid" *ngIf="forma.controls['email'].touched">
+       <p *ngIf="forma.controls['email'].errors?.['required']"> El Correo es requerido </p>
+       <p *ngIf="forma.controls['email'].errors?.['email']"> El formato es invalido</p>
+      <p *ngIf="forma.controls['email'].errors?.['containSpaces']">El mail no debe contener espacios </p>
+      </small>
+
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" [(ngModel)]="password" placeholder="Password">
+      <input type="password" class="form-control" id="floatingPassword"  placeholder="Password" id="password" formControlName="password">
       <label for="floatingPassword">Contraseña</label>
+      <small class="invalid" *ngIf="forma.controls['password'].errors?.['required']&& forma.controls['email'].touched">
+        La Clave es requerida
+      </small>
     </div>
     <p *ngIf="msjErrorFire">
       {{msjErrorFire}}
@@ -19,8 +28,9 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit"  (click)="registrarUsuario()">Finalizar!</button>
-    <p> ¿Ya tienes cuenta?  <a href=""[routerLink]="['/login']" >Inicar Sesión</a>  </p>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
- 
+  
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="forma.invalid" >Finalizar!</button>
+    <p> ¿Ya tienes cuenta?  <a href=""[routerLink]="['/login']" >Iniciar Sesión</a>  </p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2022–2022</p>
+  </form>
 </main>

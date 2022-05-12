@@ -29,10 +29,25 @@ export class FireServiceService {
   getUserLogged(){
     return this.afauth.authState
   }
+  getCurrentUser()
+  {
+    return this.afauth.authState;
+  }
+
   logOut(){
     this.afauth.signOut()
   }
   generateLog(user:any){
     return this.fireStore.collection('logsUsers').add(user);
   }
+
+  addDataCollection(nameColection:string,data:any){
+    let collection = this.fireStore.collection<any>(nameColection)
+    collection.add(data)
+  }
+  TraerMsjCollection(nameColectionChat:string){
+    let collection = this.fireStore.collection<any>(nameColectionChat, ref => ref.orderBy('fecha', 'asc').limit(25))
+    return collection.valueChanges()
+  }
+  
 }

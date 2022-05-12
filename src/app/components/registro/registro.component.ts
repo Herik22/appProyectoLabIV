@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FireServiceService } from 'src/app/servicios/fire-service.service';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators,FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -13,16 +14,37 @@ export class RegistroComponent implements OnInit {
   password:string;
   msjErrorFire:boolean|string;
 
-  constructor(private servicioLogin:FireServiceService,private ruteo:Router) { 
+  forma:FormGroup;
+
+
+  constructor(private servicioLogin:FireServiceService,private ruteo:Router,private fb:FormBuilder) { 
     this.email='';
     this.password='';
     this.msjErrorFire=false;
+    this.forma = this.fb.group({
+      'email':['',[Validators.required,Validators.email,this.spaceValidator]],
+      'password':['',Validators.required]
+    })
+    
   }
 
   ngOnInit(): void {
+   
   }
+
+  private spaceValidator (control:AbstractControl):object|null{
+    const nombre= <String>control.value;
+    const spaces = nombre.includes(' ')
+
+    return spaces?{containSpaces:true}:null
+
+  }
+
+
+
   registrarUsuario(){
-    this.servicioLogin.register(this.email,this.password)
+    
+    this.servicioLogin.register(this.forma.value.email,this.forma.value.password)
     .then(res=>{
       console.log(res)
       this.ruteo.navigate(['home'])
@@ -52,7 +74,10 @@ export class RegistroComponent implements OnInit {
 
         }
     })
+     
   }
+
+ 
 
 
 }

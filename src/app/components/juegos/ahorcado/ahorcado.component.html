@@ -1,0 +1,32 @@
+
+  <main role="main" style="background-color:#EFE3AF ;" >
+  
+    <section class="jumbotron text-center" style="background-color:#EFE3AF ;">
+      <div class="container" >
+        <img [src]="imgAhorcado" alt="" width="300px" height="300px">
+        <h1 class="d-inline" >{{palabraSecreta}}</h1>
+      </div>
+    </section>
+  
+    <div class="album py-5 " style="background-color: aquamarine ;">
+      <div class="container" style="background-color: aquamarine ;">
+        <div class="row">
+          <div class="col-md-12 p-5 ">
+            <button class="p-3 m-2 btn btn-secondary"  *ngFor="let letra of letras">
+                {{letra}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
+  </main>
+  
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+</div>
+  </footer>

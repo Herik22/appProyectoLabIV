@@ -1,0 +1,75 @@
+<div class="container bootstrap snippets bootdeys">
+    <div class="col-md-7 col-xs-12 col-md-offset-2">
+      <!-- Panel Chat -->
+      <div class="panel" id="chat">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <i class="icon wb-chat-text" aria-hidden="true"></i> Chat
+          </h3>
+        </div>
+        <div class="panel-body" >
+          <div class="chats" *ngFor="let mensaje of mensajes" >
+            <div *ngIf="mensaje?.usuario?.email === userLog.email" class="chat">
+              <div class="chat-avatar">
+                <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="right" title="" data-original-title="June Lane">
+                  <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="...">
+                  <i></i>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                <p>{{mensaje?.usuario?.email}} <br><br>  {{mensaje?.texto}} </p>
+                  <time class="chat-time" datetime="2015-07-01T11:37">{{mensaje?.fecha}}</time>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="mensaje?.usuario?.email !== userLog.email" class="chat chat-left">
+              <div class="chat-avatar">
+                <a class="avatar avatar-online" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="Edward Fletcher">
+                  <img src="https://randomuser.me/api/portraits/men/74.jpg" alt="...">
+                  <i></i>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                <p>{{mensaje?.usuario?.email}} <br>{{mensaje?.texto}} </p>
+                  <time class="chat-time" datetime="2015-07-01T11:39">{{mensaje?.fecha}}</time>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        <div class="panel-footer">
+          <form>
+            <div class="input-group">
+              <input type="text" name="mensaje" [(ngModel)]="mensaje" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" (click)="escribirMsj()" >Enviar</button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- End Panel Chat -->
+    </div>
+    </div>
+<!-- <div class="container main-container">
+<div style="border: red solid 1px ;">
+  <h1>Chat</h1>
+  <hr>
+
+  <div *ngIf="this.mensajes.length>0">
+    <div  class="text-right"  *ngFor="let mensaje of mensajes">
+        <span class="badge badge-info" style="color:black ;">EMAIL:  {{mensaje?.usuario?.email}}</span>
+        <p>
+          {{mensaje?.fecha}} - {{mensaje?.texto}}
+        </p>
+      </div>
+  </div>
+  
+  <input type="text" name="mensaje" [(ngModel)]="mensaje" class="form-control">
+  <button (click)="escribirMsj()">Enviar</button>
+</div>
+</div>  -->  

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FireServiceService } from 'src/app/servicios/fire-service.service';
 
@@ -9,19 +9,11 @@ import { FireServiceService } from 'src/app/servicios/fire-service.service';
 })
 export class TopNavbarComponent implements OnInit {
 
-  isLogged:boolean=false;
-  emailUser:string|null='';
+  @Input() isLogged:boolean=false;
+  @Input() emailUser:string|null='';
   
   constructor(private servicioLogin:FireServiceService,private ruteo:Router) { 
-   this.servicioLogin.getUserLogged().subscribe(res=>{
-     if(res!=null){
-        this.isLogged=true
-        this.emailUser=res.email
-     }else{
-      this.isLogged=false
-      this.emailUser=''
-     }
-   })
+   
   }
 
 handleisLog(value:boolean){
