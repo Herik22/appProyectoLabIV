@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
 
     this.servicioLogin.TraerMsjCollection(this.nameCollection)
     .subscribe(msjs => {
+      console.log(msjs)
       this.mensajes = msjs
     })
     if(this.mensajes == null){

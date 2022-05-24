@@ -5,13 +5,15 @@ import { JuegosRoutingModule } from './juegos-routing.module';
 import { MayorMenorComponent } from './mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './preguntados/preguntados.component';
 import { AhorcadoComponent } from './ahorcado/ahorcado.component';
+import { BusquedaTesoroComponent } from './busqueda-tesoro/busqueda-tesoro.component';
 
 
 @NgModule({
   declarations: [
     MayorMenorComponent,
     PreguntadosComponent,
-    AhorcadoComponent
+    AhorcadoComponent,
+    BusquedaTesoroComponent
   ],
   imports: [
     CommonModule,

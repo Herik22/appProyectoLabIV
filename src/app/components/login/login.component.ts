@@ -96,7 +96,6 @@ export class LoginComponent implements OnInit {
       console.log(err.code)
     })
   }
-
   verngModel(ngModal:any){
     console.log(ngModal)
   }

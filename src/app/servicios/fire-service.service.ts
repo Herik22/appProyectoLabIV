@@ -26,6 +26,7 @@ export class FireServiceService {
       throw error
     }
   }
+  
   getUserLogged(){
     return this.afauth.authState
   }
@@ -45,6 +46,7 @@ export class FireServiceService {
     let collection = this.fireStore.collection<any>(nameColection)
     collection.add(data)
   }
+  
   TraerMsjCollection(nameColectionChat:string){
     let collection = this.fireStore.collection<any>(nameColectionChat, ref => ref.orderBy('fecha', 'asc').limit(25))
     return collection.valueChanges()

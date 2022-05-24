@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
   
   
-  url:string = 'https://restcountries.com/v3.1/all' //'https://restcountries.com/v2/alpha?codes=arg,af,ge,aus'
+  url:string = 'https://restcountries.com/v3.1/alpha?codes=col,pe,chl,bra,bol' //'https://restcountries.com/v2/alpha?codes=arg,af,ge,aus'
   constructor(private http:HttpClient) {
 
    }

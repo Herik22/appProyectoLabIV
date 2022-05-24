@@ -51,3 +51,13 @@ body {
   color: #fff;
   border-bottom-color: #fff;
 }
+.contenedor{
+  background-color: aqua;
+  width: 100% !important;
+  height: 100vh ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

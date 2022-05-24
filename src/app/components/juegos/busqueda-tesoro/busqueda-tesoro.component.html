@@ -1,0 +1,12 @@
+<div class="contenedor">  
+    <h1 class="titulo"> Busqueda del Tesoso</h1>
+    <div class="containerMapa "> 
+        <img src="../../../../assets/Juegos/mapaDelTesoro/mapaTesoro.jpeg" width="500" height="500" id="map" (click)="clickImg($event)" draggable="false">
+        <p class="clicks" *ngIf="clicks>0">
+            Cantidad de Intentos:  {{clicks}}
+        </p>
+    </div>
+    
+    <h2>{{msjTesoro}}</h2>
+    
+</div>
