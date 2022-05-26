@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FireServiceService } from 'src/app/servicios/fire-service.service';
+
 
 @Component({
   selector: 'app-busqueda-tesoro',
@@ -13,13 +15,25 @@ clicks:any = 0;
 msjTesoro:string='¡Empieza a Buscar!'
 WIDTH:number = 500;
 HEIGH:number = 500; 
-  target:any = {
+target:any = {
     x: this.getRandomNumber(this.WIDTH),
     y: this.getRandomNumber(this.HEIGH)
   };
+juegoFinalizado:boolean=false
+userLog:any={
+  email:'',
+  id:0
+};
+nameCollectionStatistics:string='estadisticasBusquedaTesoro'
 
-  constructor() { 
-      
+  constructor(private servicioFB:FireServiceService) { 
+    this.servicioFB.getUserLogged().subscribe(res=>{
+      if(res!=null){
+        console.log(res)
+         this.userLog.email=res.email
+         this.userLog.id=res.uid
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -63,17 +77,19 @@ clickImg(event:any){
 
   if (distance < 20 ) {
     
-    alert(`Found the treasure in ${this.clicks} clicks!`);
-    location.reload();
+    //alert(`Found the treasure in ${this.clicks} clicks!`);
+    this.juegoFinalizado=true
+    
   }
 } 
-  
+
+reiniciarJuego(){
+  location.reload();
+}
 // generate a random Number
 getRandomNumber(size:number){
   return Math.floor(Math.random() * size);
 }
-
-
 // get the Distance of two points
 getDistance(e:any, target:any){
   let diffX = e.offsetX - target.x; // obtengo la posicion del clik en el eje X y se lo resto al ancho del x para obtener una diferencia 
@@ -102,5 +118,23 @@ getDistance(e:any, target:any){
   }
 }
 
+generarResultados(){
+  //usuario, fecha, puntaje, etc..
+  let fecha = new Date();
+  let hoy = fecha.toLocaleDateString();
+  let result = {
+    user:this.userLog,
+    fechaCorta:hoy,
+    fecha:fecha,
+    clicks:this.clicks,
+  }
+  console.log(result)
+  this.servicioFB.addDataCollection(this.nameCollectionStatistics,result)
+  this.juegoFinalizado=false
+  setTimeout(() => {
+    this.reiniciarJuego()
+  }, 1500);
+  //
+}
 }
 

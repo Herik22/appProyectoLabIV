@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       {dni:43554646,apellido:'Osorio',nombre:'Herik',email:'hh@gmail.com',password:"123"},
       {dni:34656065,apellido:'Ramos',nombre:'Herik',email:'hh@gmail.com',password:"123"},
     ]
+    
     this.msjErrorFire=false;
     this.email = '';
     this.password='';

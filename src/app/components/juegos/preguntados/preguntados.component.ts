@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/api.service';
 import { DataPregunta } from 'src/app/utils/preguntadosUtils';
+import { FireServiceService } from 'src/app/servicios/fire-service.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -14,8 +15,22 @@ export class PreguntadosComponent implements OnInit {
   paisActual:any;
   opcionesPreguntaActual:any
   contadorPregunta:number=0
+  juegoFinalizado:boolean=false
+  cantAciertos:number=0
+  userLog:any={
+    email:'',
+    id:0
+  };
+  nameCollectionStatistics:string='estadisticasPreguntados'
 
-  constructor(private apiCountrys:ApiService) { 
+  constructor(private apiCountrys:ApiService,private servicioFB:FireServiceService ) { 
+    this.servicioFB.getUserLogged().subscribe(res=>{
+      if(res!=null){
+        console.log(res)
+         this.userLog.email=res.email
+         this.userLog.id=res.uid
+      }
+    })
     this.apiCountrys.obtenerPaises().subscribe(data=>{
       this.listaPaises = data
       this.paisActual=this.listaPaises[this.contadorPregunta]
@@ -41,8 +56,9 @@ export class PreguntadosComponent implements OnInit {
       //avanzar a las opciones de la pregunta 
       this.opcionesPreguntaActual = this.obtenerOpciones(this.paisActual.cca3)
     }else{
-      let rta = confirm('¿Desea volver a jugar?')
-      !rta?this.acabarJuego():this.reiniciarJuego()
+      this.juegoFinalizado=true
+      //let rta = confirm('¿Desea volver a jugar?')
+      //  !rta?this.acabarJuego():this.reiniciarJuego()
 
     }
 
@@ -69,6 +85,7 @@ export class PreguntadosComponent implements OnInit {
     this.juegoIniciado=false
   }
   reiniciarJuego(){
+    this.cantAciertos=0
     this.contadorPregunta=0
     this.paisActual=this.listaPaises[0]
     this.opcionesPreguntaActual = this.obtenerOpciones(this.paisActual.cca3)
@@ -77,13 +94,33 @@ export class PreguntadosComponent implements OnInit {
     console.log(pregunta)
     console.log(this.opcionesPreguntaActual.idRta)
     if(pregunta.id == this.opcionesPreguntaActual.idRta){
-      alert('acertaste!')
+      alert('Bien!')
+      this.cantAciertos+=1
       setTimeout(() => {
         this.siguienteRonda()
       }, 500);
     }else{
-      alert('error!')
+      alert('Ups!')
+      setTimeout(() => {
+        this.siguienteRonda()
+      }, 500);
     }
     
+  }
+  generarResultados(){
+    //usuario, fecha, puntaje, etc..
+    let fecha = new Date();
+    let hoy = fecha.toLocaleDateString();
+    let result = {
+      user:this.userLog,
+      fechaCorta:hoy,
+      fecha:fecha,
+      aciertos:this.cantAciertos,
+      cantPreguntas:5
+    }
+    console.log(result)
+    this.servicioFB.addDataCollection(this.nameCollectionStatistics,result)
+    this.juegoFinalizado=false
+    this.reiniciarJuego()
   }
 }

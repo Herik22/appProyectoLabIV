@@ -1,32 +1,32 @@
+<div class="contenedorJuego" *ngIf="!estaJugando">
+  <h1> ! El juego ha terminado  ¡ </h1>
+  <h2> has {{gano?'Ganado 💪🏽':'Perdido 😥 '}}</h2>
+  <button type="button" class="btn btn-secondary w-50 m-5" (click)="generarResultados()" >🔒 Guardar y Reiniciar  🔒</button>
+  <button type="button" class="btn btn-secondary w-50 m-5" (click)="reiniciarJuego()" >👻 Reiniciar Juego👻</button>
+</div>
 
-  <main role="main" style="background-color:#EFE3AF ;" >
-  
+<main role="main" style="background-color:#EFE3AF ;" *ngIf="estaJugando" >
+    <h1> {{mensajeJugador}} </h1>
     <section class="jumbotron text-center" style="background-color:#EFE3AF ;">
       <div class="container" >
         <img [src]="imgAhorcado" alt="" width="300px" height="300px">
-        <h1 class="d-inline" >{{palabraSecreta}}</h1>
+        
+        <div *ngFor="let item of cantidadLetrasPalabra" class="d-inline">
+          <h1 class="d-inline p-2" style="color: #fff;">{{item}}</h1>
+        </div>
+
+     
       </div>
     </section>
-  
     <div class="album py-5 " style="background-color: aquamarine ;">
       <div class="container" style="background-color: aquamarine ;">
         <div class="row">
           <div class="col-md-12 p-5 ">
-            <button class="p-3 m-2 btn btn-secondary"  *ngFor="let letra of letras">
+            <button class="p-3 m-2 btn btn-secondary"  *ngFor="let letra of letras" (click)="letraElegida(letra)">
                 {{letra}}
             </button>
           </div>
         </div>
-
       </div>
     </div>
-  
-  </main>
-  
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Back to top</a>
-      </p>
-</div>
-  </footer>
+</main>

@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment.prod';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChatComponent } from './components/chat/chat.component';
+import { EncuestaComponent } from './components/encuesta/encuesta.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ChatComponent } from './components/chat/chat.component';
     ErrorComponent,
     BienvenidaComponent,
     TopNavbarComponent,
-    ChatComponent
+    ChatComponent,
+    EncuestaComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,121 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h2>Encuesta Patio de Juegos</h2>
+       </div>
+  
+      <div class="row g-5">
+ 
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Datos Personales</h4>
+          <form class="needs-validation" [formGroup]="forma" (ngSubmit)="guardarEncuesta()">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" formControlName="nombre" >
+                <small class="invalid" *ngIf="forma.controls['nombre'].errors?.['required']&& forma.controls['nombre'].touched" style="color:red ;">
+                    El Nombre es requerido
+                </small>
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" formControlName="apellido">
+                <small class="invalid" *ngIf="forma.controls['nombre'].errors?.['required']&& forma.controls['nombre'].touched" style="color:red ;">
+                    El Apellido es requerido
+                </small>
+              </div>
+  
+              <div class="col-12">
+                <label for="username" class="form-label">Edad</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">🔞</span>
+                  <input type="number" class="form-control" id="username" placeholder="" formControlName="edad">
+                  <small class="invalid" *ngIf="forma.controls['edad'].errors?.['required']&& forma.controls['edad'].touched" style="color:red ;">
+                    La edad es requerido
+                  </small>
+                  <small class="invalid" *ngIf="forma.controls['edad'].errors?.['min']&& forma.controls['edad'].touched" style="color:red ;">
+                    No puede ser  menor a 18 
+                  </small>
+                  <small class="invalid" *ngIf="forma.controls['edad'].errors?.['max']&& forma.controls['edad'].touched" style="color:red ;">
+                    No puede ser  mayor a 99 
+                  </small>
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="username" class="form-label">Número de teléfono</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">📲</span>
+                  <input type="number" class="form-control" id="username" placeholder="Username" formControlName="telefono">
+                  <small class="invalid" *ngIf="forma.controls['telefono'].errors?.['required']&& forma.controls['telefono'].touched" style="color:red ;">
+                    El telefono es requerido
+                  </small>
+                  <small class="invalid" *ngIf="forma.controls['telefono'].errors?.['min']&& forma.controls['telefono'].touched" style="color:red ;">
+                    No puede ser  menor a 1000000000
+                  </small>
+                  <small class="invalid" *ngIf="forma.controls['telefono'].errors?.['max']&& forma.controls['telefono'].touched" style="color:red ;">
+                    No puede ser  mayor a 9999999999
+                  </small>
+                  <small class="invalid" *ngIf="forma.controls['telefono'].errors?.['pattern']&& forma.controls['telefono'].touched" style="color:red ;">
+                    Solo numeros 
+                  </small>
+                </div>
+              </div>
+  
+              <div class="col-md-5">
+                <label for="country" class="form-label">País</label>
+                <select class="form-select" id="country" formControlName="pais" >
+                  <option value="">Elegir ...</option>
+                  <option value="us">United States</option>
+                  <option value="ar">Argentina</option>
+                  <option value="co">Colombia</option>
+                  <option value="es">España</option>
+                </select>
+                <small class="invalid" *ngIf="forma.controls['pais'].errors?.['required']&& forma.controls['pais'].touched" style="color:red ;">
+                    El País es requerido
+                </small>
+          
+              </div>
+          
+            </div>
+  
+            <hr class="my-4">
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address" value="true" formControlName="news">
+              <label class="form-check-label" for="same-address" >¿Estas de acuerdo con nuestras Politicas ?</label>
+              <small class="invalid" *ngIf="forma.controls['news'].errors?.['required']&& forma.controls['news'].touched" style="color:red ;">
+                Debes aceptar para continuar.
+            </small>
+            </div>
+  
+  
+            <h4 class="mb-3">Plataforma preferida para jugar</h4>
+  
+            <div class="my-3">
+              <div class="form-check">
+                <input id="credit" value="phone" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                <label class="form-check-label" for="credit">Celular (mobile)</label>
+              </div>
+              <div class="form-check">
+                <input id="debit" value="pc" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="debit">Pc (Computadora)</label>
+              </div>
+              <div class="form-check">
+                <input id="paypal" value="other" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="paypal">Otro (consola,tablet,etc)</label>
+              </div>
+            </div>
+  
+           
+            <hr class="my-4">
+  
+            <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]="forma.invalid" > Contestar </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  
+    
+  </div>

@@ -1,11 +1,18 @@
 <div class="contenedorJuego" *ngIf="!juegoIniciado">
+    <h1> ! PREGUNTADOS ¡  </h1>
     <button type="button" class="btn btn-secondary" (click)="iniciarJuego()">👻< Iniciar Juegos 👻</button>
 </div>
-<div class="contenedorJuegoIniciado" *ngIf="juegoIniciado">
-    <img [src]="paisActual.flags.svg" alt="" width='400px 'height='400px' class="m-2">
-    <h1 style="margin:10"> ¿Cual es su capital?  </h1>
-    <div class="opciones">
-        <button   *ngFor="let opcion of opcionesPreguntaActual.opciones " type="button" class="btn btn-warning m-2 w-100 " (click)="seleccionarPregunta(opcion)"> {{opcion?.nombre}} </button>       
-    </div>
+<div class="contenedorJuegoIniciado" *ngIf="juegoIniciado && !juegoFinalizado">   
+        <img [src]="paisActual.flags.svg" alt="" width='400px 'height='400px' class="m-2">
+        <h1 style="margin:10"> ¿Cual es su capital?  </h1>
+        <div class="opciones">
+            <button  *ngFor="let opcion of opcionesPreguntaActual.opciones " type="button" class="btn btn-warning m-2 w-100 " (click)="seleccionarPregunta(opcion)"> {{opcion?.nombre}} </button>       
+        </div>
     <button type="button" class="btn btn-secondary" (click)="acabarJuego()">🦂 Salir del Juego 🦂</button>
+</div>
+<div *ngIf="juegoFinalizado" class="contenedorJuegoFinalizado" >
+    <h1> ¿ Que quieres hacer ?  </h1>
+    <button  type="button" class="btn btn-warning m-2 w-100 " (click)="generarResultados()"> Guardar y Reiniciar </button>       
+    <button  type="button" class="btn btn-warning m-2 w-100 " (click)="reiniciarJuego()"> Reiniciar Juego </button> 
+    <button  type="button" class="btn btn-warning m-2 w-100 " (click)="acabarJuego()"> Acabar Juego </button> 
 </div>

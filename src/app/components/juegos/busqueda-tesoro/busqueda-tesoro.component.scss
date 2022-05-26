@@ -52,3 +52,15 @@ h2{
   font-size:30px;
   color: 'white';
 }
+.contenedorJuego{
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  padding-left: 0 !important;
+padding-right: 0 !important;
+height: 100vh;
+width: 100% !important;
+}

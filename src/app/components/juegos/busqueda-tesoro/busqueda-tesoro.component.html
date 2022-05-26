@@ -1,4 +1,11 @@
-<div class="contenedor">  
+<div class="contenedorJuego" *ngIf="juegoFinalizado">
+    <h1> ! Encontraste el Tesoro ¡ </h1>
+    <h2> Cantidad de clicks: {{clicks}}</h2>
+    <button type="button" class="btn btn-secondary w-50 m-5" (click)="generarResultados()" >🔒 Guardar y Reiniciar  🔒</button>
+    <button type="button" class="btn btn-secondary w-50 m-5" (click)="reiniciarJuego()" >👻 Reiniciar Juego👻</button>
+</div>
+<div class="contenedor" *ngIf="!juegoFinalizado">  
+    
     <h1 class="titulo"> Busqueda del Tesoso</h1>
     <div class="containerMapa "> 
         <img src="../../../../assets/Juegos/mapaDelTesoro/mapaTesoro.jpeg" width="500" height="500" id="map" (click)="clickImg($event)" draggable="false">
